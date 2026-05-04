@@ -1,0 +1,7 @@
+navigator.geolocation.getCurrentPosition(pos=>{
+  let lat = pos.coords.latitude;
+  let lon = pos.coords.longitude;
+
+  let map = `https://www.google.com/maps/search/병원/@${lat},${lon},15z`;
+  document.getElementById("result").innerHTML += `<br><a href="${map}">근처 병원 보기</a>`;
+});

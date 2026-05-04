@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>의료 자가 체크</title>
+
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#ffffff">
+
+  <style>
+    body { font-family: sans-serif; padding:20px; }
+    .emergency { background-color: red; color:white; }
+  </style>
+</head>
+
+<body>
+  <h2>🩺 증상 체크</h2>
+
+  <label><input type="checkbox" id="fever"> 발열</label><br>
+  <label><input type="checkbox" id="vomit"> 구토</label><br>
+  <label><input type="checkbox" id="cough"> 기침</label><br>
+
+  <button onclick="analyze()">분석</button>
+
+  <p id="result"></p>
+  <button id="emergencyBtn" style="display:none;" onclick="call119()">🚨 119</button>
+
+<script>
+function analyze(){
+  let result = "환자 증상 요약: ";
+
+  if(fever.checked) result += "발열 ";
+  if(vomit.checked) result += "구토 ";
+  if(cough.checked) result += "기침 ";
+
+  document.getElementById("result").innerText = result;
+
+  // 응급 조건
+  if(fever.checked && vomit.checked){
+    document.body.classList.add("emergency");
+    document.getElementById("emergencyBtn").style.display = "block";
+  }
+}
+
+function call119(){
+  location.href = "tel:119";
+}
+</script>
+</body>
+</html>
